@@ -2,14 +2,13 @@ package kr.co.myproject.service;
 
 
 import kr.co.myproject.Mapper.UserMapper;
+import kr.co.myproject.entity.User;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
-import kr.co.myproject.Util.BannedUserException;
 import kr.co.myproject.Util.CustomUserDetails;
-import kr.co.myproject.entity.User;
 import lombok.RequiredArgsConstructor;
 
 @RequiredArgsConstructor
@@ -26,10 +25,6 @@ public class CustomUserDetailsService implements UserDetailsService { // 세큐�
         if(user == null)
         {
             throw new UsernameNotFoundException("존재하지 않는 계정입니다.");
-        }
-
-        if (user.isBan()) {
-            throw new BannedUserException("정지된 계정입니다.");
         }
 
         // 조회된 객체를 세큐리티가 사용할 수 있도록 래핑해서 전달

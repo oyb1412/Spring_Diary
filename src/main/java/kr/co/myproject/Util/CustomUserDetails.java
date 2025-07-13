@@ -3,11 +3,10 @@ package kr.co.myproject.Util;
 import java.util.Collection;
 import java.util.Collections;
 
+import kr.co.myproject.entity.User;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
-import kr.co.myproject.enums.Role;
-import kr.co.myproject.entity.User;
 // 세큐리티가 사용하는 사용자 정보 객체
 // 폼 로그인 성공 시, SecurityContext에 이 객체가 저장됨
 public class CustomUserDetails implements UserDetails {
@@ -28,8 +27,7 @@ public class CustomUserDetails implements UserDetails {
     //ROLE_ 접두어가 필수
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
-        Role role = user.getRole();
-        return Collections.singleton(() -> "ROLE_" + role);
+        return Collections.singleton(() -> "ROLE_" + "MEMBER");
     }
 
     // 폼 로그인 시, 세큐리티가 이 값을 기반으로 DB에서 조회
@@ -41,7 +39,7 @@ public class CustomUserDetails implements UserDetails {
     // 폼 로그인 시, 세큐리티가 이 값을 기반으로 DB에서 조회
     @Override
     public String getUsername() {
-        return user.getUsername();
+        return user.getUserName();
     }
     
 }
