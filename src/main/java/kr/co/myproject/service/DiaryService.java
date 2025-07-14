@@ -54,4 +54,17 @@ public class DiaryService {
                 .map(DiaryDto::new)
                 .collect(Collectors.toList());
     }
+
+    public Map<String, Object> check(LocalDate date, SessionUser sessionUser)
+    {
+        User user = userMapper.findByUsername(sessionUser.getUserName());
+        List<Diary> diarys = diaryMapper.findByUserIdAndCreatedDate(user.getId(), date);
+
+        if(diarys.isEmpty())
+        {
+            return Map.of("check", false);
+        }
+
+        return Map.of( "check", true);
+    }
 }

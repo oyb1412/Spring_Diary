@@ -6,10 +6,11 @@ import kr.co.myproject.dto.User.SessionUser;
 import kr.co.myproject.entity.Diary;
 import kr.co.myproject.service.DiaryService;
 import lombok.RequiredArgsConstructor;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
+import java.time.LocalDate;
+import java.time.MonthDay;
+import java.time.format.DateTimeFormatter;
 import java.util.Map;
 
 @RestController
@@ -23,5 +24,19 @@ public class DiaryController {
     {
         SessionUser sessionUser = (SessionUser) session.getAttribute("user");
         return diaryService.create(dto, sessionUser);
+    }
+
+    @GetMapping("/api/diary/check/{dateStr}")
+    public Map<String, Object> checkDiary(@PathVariable("dateStr") String dateStr,
+                                          HttpSession session)
+    {
+        MonthDay md = MonthDay.parse(dateStr,
+                DateTimeFormatter.ofPattern("MMdd"));
+
+        LocalDate date = md.atYear(LocalDate.now().getYear());
+
+        SessionUser sessionUser = (SessionUser) session.getAttribute("user");
+
+        return diaryService.check(date, sessionUser);
     }
 }

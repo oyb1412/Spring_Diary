@@ -33,9 +33,7 @@
                         {{month}}월&nbsp;{{day}}일
                     </p>
             <!-- 제목 -->
-            <h2 class="text-3xl font-bold text-gray-800 break-words">
-                {{diary.title}}
-            </h2>
+            <h2 class="text-3xl font-bold text-gray-800 break-words">{{diary.title}}</h2>
 
                     <!-- 선택한 기분 이모지 -->
                     <div class="text-3xl">
@@ -62,17 +60,13 @@
                 </div>
             </div>
             <!-- 본문 -->
-            <div class="whitespace-pre-wrap text-gray-700 leading-relaxed">
-                {{diary.content}}
-            </div>
+            <div class="whitespace-pre-wrap text-gray-700 leading-relaxed">{{diary.content}}</div>
 
             <!-- ANSWER (예: 다음 날에 쓴 답변이나 회고) -->
             {{#diary.aiAnswer}}
                 <section class="mt-6 border-t pt-6">
                     <h3 class="text-lg font-semibold text-primary mb-2">답변 / 회고</h3>
-                    <p class="whitespace-pre-wrap text-gray-700 leading-relaxed">
-                        {{diary.aiAnswer}}
-                    </p>
+                    <p class="whitespace-pre-wrap text-gray-700 leading-relaxed">{{diary.aiAnswer}}</p>
                 </section>
             {{/diary.aiAnswer}}
         </article>
