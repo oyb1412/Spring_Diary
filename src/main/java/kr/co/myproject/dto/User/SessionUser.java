@@ -5,12 +5,12 @@ import lombok.Getter;
 
 @Getter
 public class SessionUser {
-    private Long id;
-    private String realName;
+    private String name;
+    private String userName;
 
     public SessionUser(User user)
     {
-        this.id = user.getId();
-        this.realName = user.getRealName();
+        this.userName = user.getUserName();
+        this.name = user.getName();
     }
 }

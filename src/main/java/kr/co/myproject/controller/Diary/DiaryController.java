@@ -1,6 +1,8 @@
 package kr.co.myproject.controller.Diary;
 
+import jakarta.servlet.http.HttpSession;
 import kr.co.myproject.dto.Diary.DiaryCreateDto;
+import kr.co.myproject.dto.User.SessionUser;
 import kr.co.myproject.entity.Diary;
 import kr.co.myproject.service.DiaryService;
 import lombok.RequiredArgsConstructor;
@@ -16,7 +18,10 @@ public class DiaryController {
     private final DiaryService diaryService;
 
     @PostMapping("/api/diary/create")
-    public Map<String, Object> createDiary(@RequestBody DiaryCreateDto dto) {
-        return diaryService.create(dto);
+    public Map<String, Object> createDiary(@RequestBody DiaryCreateDto dto,
+                                           HttpSession session)
+    {
+        SessionUser sessionUser = (SessionUser) session.getAttribute("user");
+        return diaryService.create(dto, sessionUser);
     }
 }

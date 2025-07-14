@@ -5,6 +5,7 @@ import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 @NoArgsConstructor
@@ -18,11 +19,12 @@ public class Diary extends BaseTimeEntity {
     private String aiAnswer;
 
     @Builder
-    public Diary(Long userId, Emotion emotion, String title, String content, String aiAnswer) {
+    public Diary(Long userId, Emotion emotion, String title, String content, String aiAnswer, LocalDate createdDate) {
+        this.userId = userId;
         this.emotion = emotion;
         this.title = title;
         this.content = content;
         this.aiAnswer = aiAnswer;
-        this.createdDate = LocalDateTime.now();
+        this.createdDate = createdDate;
     }
 }

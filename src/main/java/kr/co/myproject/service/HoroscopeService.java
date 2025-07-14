@@ -23,9 +23,8 @@ public class HoroscopeService {
     private static final Duration TTL = Duration.ofDays(1);      // 캐시 1일
 
 
-    public HoroscopeDto getHoroscope(LocalDateTime dateTime)
+    public HoroscopeDto getHoroscope(LocalDate date)
     {
-        LocalDate date = dateTime.toLocalDate();
         String key = CHCHE_KEY + date;           // 오늘 날짜 key
 
         String cached = redis.opsForValue().get(key);

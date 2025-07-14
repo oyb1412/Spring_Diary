@@ -1,0 +1,104 @@
+{{>other/header}}
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>메인 페이지</title>
+</head>
+<body class="bg-gradient-to-br from-blue-50 to-purple-50 min-h-screen">
+<!-- 메인 페이지 -->
+<div id="mainPage" class="min-h-screen">
+    <!-- 헤더 -->
+    <header class="bg-white shadow-sm border-b">
+        <div class="max-w-6xl mx-auto px-4 py-4 flex justify-between items-center">
+            <div class="flex items-center space-x-4">
+                <h1 class="font-['Pacifico'] text-2xl text-primary">logo</h1>
+                <span class="text-xl font-bold text-gray-800">마음의 기록</span>
+            </div>
+            <div class="flex items-center space-x-4">
+                <div class="flex items-center space-x-2">
+                    <div class="w-8 h-8 bg-primary rounded-full flex items-center justify-center">
+                        <i class="ri-user-line text-white text-sm"></i>
+                    </div>
+                    <span id="userEmail" class="text-gray-700 font-medium"></span>
+                </div>
+                <button id="logoutBtn" class="text-gray-600 hover:text-gray-800 transition-colors">
+                    <div class="w-8 h-8 flex items-center justify-center">
+                        <i class="ri-logout-box-line"></i>
+                    </div>
+                </button>
+            </div>
+        </div>
+    </header>
+    <main class="max-w-6xl mx-auto px-4 py-8">
+        <!-- 달력 섹션 -->
+        <section class="bg-white rounded-2xl shadow-lg p-6 mb-8">
+            <div class="flex justify-between items-center mb-6">
+                <h2 class="text-2xl font-bold text-gray-800">나의 일기 달력</h2>
+                <div class="flex items-center space-x-4">
+                    <button id="prevMonth" class="w-10 h-10 flex items-center justify-center hover:bg-gray-100 rounded-lg transition-colors">
+                        <i class="ri-arrow-left-s-line text-gray-600"></i>
+                    </button>
+                    <span id="currentMonth" class="text-lg font-semibold text-gray-800 min-w-32 text-center"></span>
+                    <button id="nextMonth" class="w-10 h-10 flex items-center justify-center hover:bg-gray-100 rounded-lg transition-colors">
+                        <i class="ri-arrow-right-s-line text-gray-600"></i>
+                    </button>
+                </div>
+            </div>
+            <div class="grid grid-cols-7 gap-2 mb-4">
+                <div class="text-center py-3 font-semibold text-gray-600">일</div>
+                <div class="text-center py-3 font-semibold text-gray-600">월</div>
+                <div class="text-center py-3 font-semibold text-gray-600">화</div>
+                <div class="text-center py-3 font-semibold text-gray-600">수</div>
+                <div class="text-center py-3 font-semibold text-gray-600">목</div>
+                <div class="text-center py-3 font-semibold text-gray-600">금</div>
+                <div class="text-center py-3 font-semibold text-gray-600">토</div>
+            </div>
+            <div id="calendarGrid" class="grid grid-cols-7 gap-2">
+            </div>
+        </section>
+        <div class="grid md:grid-cols-2 gap-8 mb-8">
+            <!-- 명언 섹션 -->
+            <section class="bg-white rounded-2xl shadow-lg p-6">
+                <h3 class="text-xl font-bold text-gray-800 mb-4 flex items-center">
+                    <div class="w-6 h-6 flex items-center justify-center mr-2">
+                        <i class="ri-double-quotes-l text-primary"></i>
+                    </div>
+                    오늘의 명언
+                </h3>
+                <div class="bg-gradient-to-r from-blue-50 to-purple-50 rounded-xl p-6">
+                    <blockquote id="dailyQuote" class="text-lg text-gray-700 mb-4 leading-relaxed italic">
+                        {{famous.famousKr}}
+                    </blockquote>
+                    <cite id="quoteAuthor" class="text-primary font-semibold">
+                        {{famous.author}}
+                    </cite>
+                </div>
+            </section>
+            <!-- 운세 섹션 -->
+            <section class="bg-white rounded-2xl shadow-lg p-6">
+                <h3 class="text-xl font-bold text-gray-800 mb-4 flex items-center">
+                    <div class="w-6 h-6 flex items-center justify-center mr-2">
+                        <i class="ri-star-line text-secondary"></i>
+                    </div>
+                    오늘의 운세
+                </h3>
+                <div class="bg-gradient-to-r from-yellow-50 to-orange-50 rounded-xl p-6">
+                    <div class="flex items-center mb-3">
+                        <div class="w-8 h-8 flex items-center justify-center mr-3">
+                            <i class="ri-magic-line text-secondary text-lg"></i>
+                        </div>
+                        <span id="fortuneTitle" class="font-semibold text-gray-800">
+                            {{horoscope.content}}
+                        </span>
+                    </div>
+                    <p id="fortuneContent" class="text-gray-700 leading-relaxed"></p>
+                </div>
+            </section>
+        </div>
+    </main>
+</div>
+</body>
+</html>
+<script src="/js/main.js"></script>

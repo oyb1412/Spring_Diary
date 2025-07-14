@@ -40,7 +40,7 @@ public class SecurityConfig {
             .csrf(csrf -> csrf.disable()) // CSRF(사이트 위조 공격 방지) 기능 비활성화
             .headers(headers -> headers.frameOptions(frame -> frame.disable())) // X-Frame-Options 비활성화(h2콘솔 사용 가능화)
             .authorizeHttpRequests(auth -> auth // 인증 및 인가 관련 처리 설정
-                .requestMatchers("/", "/css/**", "/js/**", "/files/**", "/login-page", "/userLogin", "/register-page", "/api/user/register").permitAll() // 여기에 등록된 리소스는 인증(로그인) 없이 접근 허용
+                .requestMatchers("/","/.well-known/**", "/css/**", "/js/**", "/files/**", "/login-page", "/userLogin", "/register-page", "/api/user/register").permitAll() // 여기에 등록된 리소스는 인증(로그인) 없이 접근 허용
                 .anyRequest().authenticated() // 나머지 경로는 모두 인증(로그인) 필요
             )
             .logout(logout -> logout
@@ -53,7 +53,6 @@ public class SecurityConfig {
 				.usernameParameter("username") // 세큐리티가 인식할 수 있는 name값
 				.passwordParameter("password") // 세큐리티가 인식할 수 있는 name값
 				.successHandler(authenticationSuccessHandler())
-				.failureHandler(authenticationFailureHandler())
 			);
 
 	// 설정된 http객체를 반환
@@ -71,11 +70,11 @@ public class SecurityConfig {
 												Authentication authentication) throws IOException, ServletException
 				{
 					CustomUserDetails userDetails = (CustomUserDetails) authentication.getPrincipal();
-
 					SessionUser sessionUser = new SessionUser(userDetails.getUser());
-
 					request.getSession().setAttribute("user", sessionUser);
-					super.onAuthenticationSuccess(request, response, authentication);
+
+					String targetUrl = request.getContextPath() + "/main-page";
+					response.sendRedirect(targetUrl);
 				}
 		};
 	}

@@ -1,0 +1,83 @@
+{{>other/header}}
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>일기 확인</title>
+</head>
+<body class="bg-gradient-to-br from-blue-50 to-purple-50 min-h-screen">
+
+<!-- 일기 확인 페이지 -->
+<div id="diaryCheckPage" class="min-h-screen">
+    <header class="bg-white shadow-sm border-b">
+        <div class="max-w-4xl mx-auto px-4 py-4 flex justify-between items-center">
+            <div class="flex items-center space-x-4">
+                <button onclick="history.back()"
+                        class="w-10 h-10 flex items-center justify-center hover:bg-gray-100 rounded-lg transition-colors">
+                    <i class="ri-arrow-left-line text-gray-600"></i>
+                </button>
+                <h1 class="text-xl font-bold text-gray-800">일기 확인</h1>
+            </div>
+
+
+        </div>
+    </header>
+
+    <main class="max-w-4xl mx-auto px-4 py-8">
+        <article class="bg-white rounded-2xl shadow-lg p-8 space-y-8">
+
+            <div class="flex items-center justify-between">
+                <div>
+                    <p class="text-sm text-gray-500 mb-1">
+                        {{month}}월&nbsp;{{day}}일
+                    </p>
+            <!-- 제목 -->
+            <h2 class="text-3xl font-bold text-gray-800 break-words">
+                {{diary.title}}
+            </h2>
+
+                    <!-- 선택한 기분 이모지 -->
+                    <div class="text-3xl">
+                        {{#diary.happy}}
+                            😀
+                        {{/diary.happy}}
+
+                        {{#diary.sad}}
+                            😢
+                        {{/diary.sad}}
+
+                        {{#diary.angry}}
+                            😡
+                        {{/diary.angry}}
+
+                        {{#diary.tried}}
+                            🥱
+                        {{/diary.tried}}
+
+                        {{#diary.neutral}}
+                            😐
+                        {{/diary.neutral}}
+                    </div>
+                </div>
+            </div>
+            <!-- 본문 -->
+            <div class="whitespace-pre-wrap text-gray-700 leading-relaxed">
+                {{diary.content}}
+            </div>
+
+            <!-- ANSWER (예: 다음 날에 쓴 답변이나 회고) -->
+            {{#diary.aiAnswer}}
+                <section class="mt-6 border-t pt-6">
+                    <h3 class="text-lg font-semibold text-primary mb-2">답변 / 회고</h3>
+                    <p class="whitespace-pre-wrap text-gray-700 leading-relaxed">
+                        {{diary.aiAnswer}}
+                    </p>
+                </section>
+            {{/diary.aiAnswer}}
+        </article>
+    </main>
+</div>
+
+</body>
+</html>

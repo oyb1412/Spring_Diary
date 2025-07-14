@@ -1,12 +1,40 @@
-<main class="container mx-auto py-10">
-    <div class="bg-white rounded shadow p-6 text-center">
-        <h2 class="text-2xl font-bold mb-4">오늘의 명언</h2>
-        <p class="text-xl italic text-gray-700">"{{famous.famousKr}}"</p>
-        <p class="mt-2 text-gray-500">- {{famous.author}}</p>
+{{>other/header}}
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>마음의 기록 - 일기와 운세</title>
+</head>
+<body class="bg-gradient-to-br from-blue-50 to-purple-50 min-h-screen">
+<!-- 로그인 페이지 -->
+<div id="loginPage" class="min-h-screen flex items-center justify-center p-4">
+    <div class="bg-white rounded-2xl shadow-xl p-8 w-full max-w-md">
+        <div class="text-center mb-8">
+            <h1 class="font-['Pacifico'] text-3xl text-primary mb-2">logo</h1>
+            <h2 class="text-2xl font-bold text-gray-800 mb-2">마음의 기록</h2>
+            <p class="text-gray-600">당신의 하루를 기록하고 운세를 확인하세요</p>
+        </div>
+        <form action="/userLogin" method="post" class="space-y-6">
+            <div>
+                <label class="block text-sm font-medium text-gray-700 mb-2">아이디</label>
+                <input type="text" id="username" name="username" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent outline-none" placeholder="아이디를 입력하세요" required>
+            </div>
+            <div>
+                <label class="block text-sm font-medium text-gray-700 mb-2">비밀번호</label>
+                <input type="password" id="password" name="password" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent outline-none" placeholder="비밀번호를 입력하세요" required>
+            </div>
+            <button type="submit" class="w-full bg-primary text-white py-3 rounded-button font-medium hover:bg-primary/90 transition-colors whitespace-nowrap">
+                로그인
+            </button>
+        </form>
+        <div class="mt-6 text-center">
+            <p class="text-gray-600">회원이 아니신가요?
+                <a href="/register-page" class="text-primary hover:underline font-medium">회원가입</a>
+            </p>
+        </div>
     </div>
+</div>
+</body>
+</html>
 
-    <div class="bg-white rounded shadow p-6 text-center">
-        <h2 class="text-2xl font-bold mb-4">오늘의 운세</h2>
-        <p class="text-xl italic text-gray-700">"{{horoscope.content}}"</p>
-    </div>
-</main>
